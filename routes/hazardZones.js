@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const HazardZone = require('../models/HazardZone');
-
 router.post('/', async (req, res) => {
   try {
     const { name, type, coordinates, riskLevel, population, safetyMeasures, description } = req.body;
@@ -20,7 +19,6 @@ router.post('/', async (req, res) => {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
-
 router.get('/', async (req, res) => {
   try {
     const { type, riskLevel } = req.query;
@@ -33,7 +31,6 @@ router.get('/', async (req, res) => {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
-
 router.get('/:id', async (req, res) => {
   try {
     const hazardZone = await HazardZone.findById(req.params.id);
