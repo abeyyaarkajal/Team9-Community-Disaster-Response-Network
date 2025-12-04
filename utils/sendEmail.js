@@ -1,10 +1,7 @@
 const nodemailer = require('nodemailer');
 
-/**
- * Send email utility
- */
 const sendEmail = async (options) => {
-  // Create transporter
+ 
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST || 'smtp.gmail.com',
     port: process.env.SMTP_PORT || 587,
@@ -15,7 +12,6 @@ const sendEmail = async (options) => {
     },
   });
 
-  // Email options
   const mailOptions = {
     from: `${process.env.FROM_NAME} <${process.env.FROM_EMAIL}>`,
     to: options.email,
@@ -23,8 +19,6 @@ const sendEmail = async (options) => {
     text: options.message,
     html: options.html,
   };
-
-  // Send email
   try {
     const info = await transporter.sendMail(mailOptions);
     console.log('Email sent:', info.messageId);
@@ -35,9 +29,6 @@ const sendEmail = async (options) => {
   }
 };
 
-/**
- * Send SOS alert email
- */
 const sendSOSAlert = async (incident, user) => {
   const message = `
     🚨 EMERGENCY SOS ALERT
@@ -60,9 +51,6 @@ const sendSOSAlert = async (incident, user) => {
   });
 };
 
-/**
- * Send alert notification
- */
 const sendAlertNotification = async (alert, users) => {
   const message = `
     ⚠️ DISASTER ALERT
@@ -79,7 +67,6 @@ const sendAlertNotification = async (alert, users) => {
     Stay safe and follow emergency protocols.
   `;
 
-  // Send to all users in affected areas
   for (const user of users) {
     await sendEmail({
       email: user.email,
