@@ -1,8 +1,5 @@
-/**
- * Send push notification (placeholder for future Firebase/OneSignal integration)
- */
+
 exports.sendPushNotification = async (userId, notification) => {
-  // TODO: Implement with Firebase Cloud Messaging or OneSignal
   console.log(`Push notification to user ${userId}:`, notification);
   
   return {
@@ -11,9 +8,6 @@ exports.sendPushNotification = async (userId, notification) => {
   };
 };
 
-/**
- * Send bulk notifications to multiple users
- */
 exports.sendBulkNotifications = async (userIds, notification) => {
   const results = await Promise.all(
     userIds.map(userId => this.sendPushNotification(userId, notification))
@@ -25,14 +19,10 @@ exports.sendBulkNotifications = async (userIds, notification) => {
   };
 };
 
-/**
- * Send SOS notification to nearby volunteers
- */
 exports.notifyNearbyVolunteers = async (incident) => {
   const User = require('../models/User');
   const { calculateDistance } = require('./geocoding');
-  
-  // Find volunteers within 10km
+
   const volunteers = await User.find({ role: 'volunteer' });
   
   const nearbyVolunteers = volunteers.filter(volunteer => {
@@ -48,7 +38,6 @@ exports.notifyNearbyVolunteers = async (incident) => {
     return distance <= 10;
   });
 
-  // Send notifications
   await this.sendBulkNotifications(
     nearbyVolunteers.map(v => v._id),
     {
@@ -61,13 +50,9 @@ exports.notifyNearbyVolunteers = async (incident) => {
   return nearbyVolunteers.length;
 };
 
-/**
- * Send alert broadcast to affected areas
- */
 exports.broadcastAlert = async (alert) => {
   const User = require('../models/User');
   
-  // Find users in affected areas
   const users = await User.find({
     'location.address': { $in: alert.affectedAreas.map(area => new RegExp(area, 'i')) }
   });
