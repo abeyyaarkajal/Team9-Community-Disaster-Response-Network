@@ -1,22 +1,14 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-
-/**
- * Verify JWT token and attach user to request
- */
 exports.protect = async (req, res, next) => {
   let token;
-
-  // Check for token in Authorization header
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     try {
-      // Get token from header
+     
       token = req.headers.authorization.split(' ')[1];
-
-      // Verify token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-      // Get user from token
+      
       req.user = await User.findById(decoded.id).select('-password');
 
       if (!req.user) {
@@ -35,9 +27,7 @@ exports.protect = async (req, res, next) => {
   }
 };
 
-/**
- * Check if user has specific role
- */
+
 exports.authorize = (...roles) => {
   return (req, res, next) => {
     if (!req.user) {
@@ -54,9 +44,7 @@ exports.authorize = (...roles) => {
   };
 };
 
-/**
- * Verify user owns the resource
- */
+
 exports.checkOwnership = (resourceUserField = 'reportedBy') => {
   return async (req, res, next) => {
     try {
@@ -75,7 +63,7 @@ exports.checkOwnership = (resourceUserField = 'reportedBy') => {
         return res.status(404).json({ message: 'Resource not found' });
       }
 
-      // Allow if user is owner or authority
+      
       if (resource[resourceUserField].toString() !== req.user._id.toString() 
           && req.user.role !== 'authority') {
         return res.status(403).json({ message: 'Not authorized to modify this resource' });
