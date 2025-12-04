@@ -1,8 +1,6 @@
 const rateLimit = require('express-rate-limit');
 
-/**
- * General API rate limiter
- */
+
 exports.apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // Limit each IP to 100 requests per windowMs
@@ -11,9 +9,7 @@ exports.apiLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-/**
- * Stricter limiter for authentication routes
- */
+
 exports.authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 5, // Limit each IP to 5 requests per windowMs
@@ -23,9 +19,7 @@ exports.authLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-/**
- * SOS endpoint limiter (more lenient)
- */
+
 exports.sosLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
   max: 3, // Limit each IP to 3 SOS requests per minute
@@ -34,9 +28,7 @@ exports.sosLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-/**
- * Alert creation limiter (authorities only)
- */
+
 exports.alertLimiter = rateLimit({
   windowMs: 5 * 60 * 1000, // 5 minutes
   max: 10, // Limit to 10 alerts per 5 minutes
