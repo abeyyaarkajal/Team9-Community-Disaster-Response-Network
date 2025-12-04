@@ -2,29 +2,25 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-/**
- * Register a new user
- */
 exports.register = async (req, res) => {
   try {
     const { name, email, password, phone, role, location, skills } = req.body;
 
-    // Validation
+   
     if (!name || !email || !password || !phone) {
       return res.status(400).json({ message: 'Please provide all required fields' });
     }
 
-    // Check if user exists
     let user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({ message: 'User already exists with this email' });
     }
 
-    // Hash password
+  
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Create user
+    
     user = new User({
       name,
       email,
@@ -37,7 +33,7 @@ exports.register = async (req, res) => {
 
     await user.save();
 
-    // Create JWT token
+    
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
@@ -66,31 +62,29 @@ exports.register = async (req, res) => {
   }
 };
 
-/**
- * Login user
- */
+
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Validation
+   
     if (!email || !password) {
       return res.status(400).json({ message: 'Please provide email and password' });
     }
 
-    // Check if user exists
+   
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    // Check password
+    
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    // Create JWT token
+   
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
@@ -120,9 +114,6 @@ exports.login = async (req, res) => {
   }
 };
 
-/**
- * Get user profile by ID
- */
 exports.getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.params.id).select('-password');
@@ -145,9 +136,6 @@ exports.getProfile = async (req, res) => {
   }
 };
 
-/**
- * Update user profile
- */
 exports.updateProfile = async (req, res) => {
   try {
     const { name, phone, location, skills } = req.body;
@@ -177,9 +165,6 @@ exports.updateProfile = async (req, res) => {
   }
 };
 
-/**
- * Get all volunteers
- */
 exports.getVolunteers = async (req, res) => {
   try {
     const volunteers = await User.find({ role: 'volunteer' })
