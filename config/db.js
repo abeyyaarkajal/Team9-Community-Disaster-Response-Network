@@ -1,12 +1,9 @@
 const mongoose = require('mongoose');
 
-/**
- * Connect to MongoDB Database
- * Uses connection string from environment variables
- */
+
 const connectDB = async () => {
   try {
-    // Connect to MongoDB with options
+   
     const conn = await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -16,7 +13,6 @@ const connectDB = async () => {
     console.log(`📊 Database Name: ${conn.connection.name}`);
     console.log(`🔌 Connection State: ${conn.connection.readyState === 1 ? 'Connected' : 'Disconnected'}`);
 
-    // Handle connection events
     mongoose.connection.on('error', (err) => {
       console.error(`❌ MongoDB connection error: ${err}`);
     });
@@ -29,7 +25,6 @@ const connectDB = async () => {
       console.log('🔄 MongoDB reconnected');
     });
 
-    // Graceful shutdown
     process.on('SIGINT', async () => {
       await mongoose.connection.close();
       console.log('🛑 MongoDB connection closed due to application termination');
@@ -39,7 +34,7 @@ const connectDB = async () => {
   } catch (error) {
     console.error(`❌ Error connecting to MongoDB: ${error.message}`);
     console.error('Stack:', error.stack);
-    process.exit(1); // Exit with failure
+    process.exit(1); 
   }
 };
 
