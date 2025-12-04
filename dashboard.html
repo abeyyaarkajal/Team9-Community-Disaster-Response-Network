@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDRN Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="navbar">
+        <span class="nav-title">CDRN Dashboard</span>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <div class="dashboard-container">
+
+        <h1>Welcome to the Dashboard</h1>
+        <p class="muted">Your disaster response updates appear here.</p>
+
+        <!-- Dashboard Cards -->
+        <div class="card-grid">
+            <div class="card">
+                <h3>Total Alerts</h3>
+                <p class="card-number">12</p>
+            </div>
+
+            <div class="card">
+                <h3>Active Incidents</h3>
+                <p class="card-number">5</p>
+            </div>
+
+            <div class="card">
+                <h3>Nearby Shelters</h3>
+                <p class="card-number">3</p>
+            </div>
+
+            <div class="card">
+                <h3>Your Reports</h3>
+                <p class="card-number">7</p>
+            </div>
+        </div>
+
+        <!-- Alerts Section -->
+        <h2 class="section-title">Latest Alerts</h2>
+
+        <div class="alert-box">
+            <div class="alert-item warning">
+                ⚠️ Heavy rainfall expected in your area.
+            </div>
+            <div class="alert-item info">
+                🏠 New shelter opened at Govt School Sector 12.
+            </div>
+            <div class="alert-item critical">
+                🚨 Flood level rising near River Point Bridge.
+            </div>
+        </div>
+
+        <!-- Buttons Section -->
+        <div class="action-buttons">
+            <a href="#" class="btn-primary">Report Incident</a>
+            <a href="#" class="btn-primary">View Resources</a>
+            <a href="#" class="btn-sos">🚨 SOS</a>
+        </div>
+
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>

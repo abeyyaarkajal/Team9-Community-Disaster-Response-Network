@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Community Disaster Response Network (CDRN)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">CDRN</div>
+    <nav class="nav">
+      <a href="#home">Home</a>
+      <a href="#phases">Disaster Phases</a>
+      <a href="#citizen">Citizen</a>
+      <a href="#volunteer">Volunteer</a>
+      <a href="#authority">Authority</a>
+      <a href="#recovery">Recovery</a>
+      <a href="#about">Architecture</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO / HOME -->
+    <section id="home" class="section hero">
+      <div class="hero-text">
+        <h1>Community Disaster Response Network</h1>
+        <p>
+          A unified platform connecting citizens, volunteers, NGOs, and authorities
+          for real-time disaster mitigation, preparedness, response, and recovery.
+        </p>
+        <div class="hero-actions">
+          <a href="#citizen" class="btn primary">Citizen Portal</a>
+          <a href="#authority" class="btn secondary">Authority Dashboard</a>
+        </div>
+        <div class="hero-tags">
+          <span class="tag">Floods</span>
+          <span class="tag">Cyclones</span>
+          <span class="tag">Earthquakes</span>
+          <span class="tag">Wildfires</span>
+          <span class="tag">Landslides</span>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="alert-banner">
+          <h3>Live Alerts</h3>
+          <ul id="alert-list">
+            <li><strong>Severe Rainfall Advisory</strong> – City Zone 3 (Next 6 hrs)</li>
+            <li><strong>River Level High</strong> – Flood watch along Riverside Belt</li>
+          </ul>
+        </div>
+        <div class="stats">
+          <div class="stat-card">
+            <span class="stat-label">Active Incidents</span>
+            <span class="stat-value" id="stat-incidents">12</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Volunteers Online</span>
+            <span class="stat-value" id="stat-volunteers">87</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Shelters Open</span>
+            <span class="stat-value" id="stat-shelters">24</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DISASTER PHASES -->
+    <section id="phases" class="section phases">
+      <h2>Disaster Management Phases Coverage</h2>
+      <p class="section-subtitle">
+        CDRN aligns with official disaster management phases with weighted priorities.
+      </p>
+      <div class="phase-grid">
+        <div class="phase-card mitigation">
+          <h3>Mitigation (20%)</h3>
+          <p>Risk identification, hazard and vulnerability mapping, community awareness.</p>
+          <ul>
+            <li>Hazard maps: flood, landslide, cyclone paths</li>
+            <li>Community vulnerability index</li>
+            <li>Safety guides and knowledge hub</li>
+          </ul>
+        </div>
+        <div class="phase-card preparedness">
+          <h3>Preparedness (25%)</h3>
+          <p>Early warnings, training, checklists, volunteer readiness.</p>
+          <ul>
+            <li>Real-time warnings from weather & IMD feeds</li>
+            <li>Training modules & mock drills</li>
+            <li>Family emergency checklist generator</li>
+            <li>Volunteer skill & readiness registry</li>
+          </ul>
+        </div>
+        <div class="phase-card response">
+          <h3>Response (40%)</h3>
+          <p>Real-time reporting, SOS, coordination, and resource routing.</p>
+          <ul>
+            <li>Live incident reporting + SOS</li>
+            <li>Volunteer tasking & routing</li>
+            <li>Shelter & resource locator</li>
+            <li>Heatmaps and live map of roadblocks, rescues</li>
+          </ul>
+        </div>
+        <div class="phase-card recovery">
+          <h3>Recovery (15%)</h3>
+          <p>Damage assessment, compensation workflows, rehab tracking.</p>
+          <ul>
+            <li>Damage assessment forms</li>
+            <li>Relief distribution dashboards</li>
+            <li>Case status tracking for affected families</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase-chart">
+        <div class="phase-bar mitigation" style="width:20%">20% Mitigation</div>
+        <div class="phase-bar preparedness" style="width:25%">25% Preparedness</div>
+        <div class="phase-bar response" style="width:40%">40% Response</div>
+        <div class="phase-bar recovery" style="width:15%">15% Recovery</div>
+      </div>
+    </section>
+
+    <!-- CITIZEN PORTAL -->
+    <section id="citizen" class="section role-section">
+      <div class="section-header">
+        <h2>Citizen Portal</h2>
+        <p>Report incidents, send SOS, view safe routes and shelters.</p>
+      </div>
+      <div class="grid-2">
+        <div class="card form-card">
+          <h3>Report an Incident</h3>
+          <form id="incident-form">
+            <label>
+              Incident Type
+              <select name="type" required>
+                <option value="">Select type</option>
+                <option>Flooding</option>
+                <option>Injury</option>
+                <option>Fire</option>
+                <option>Blocked Road</option>
+                <option>Missing Person</option>
+              </select>
+            </label>
+            <label>
+              Description
+              <textarea name="description" rows="3" placeholder="Describe the situation" required></textarea>
+            </label>
+            <div class="grid-2">
+              <label>
+                Latitude
+                <input type="number" step="0.000001" name="lat" placeholder="e.g. 27.1767" required />
+              </label>
+              <label>
+                Longitude
+                <input type="number" step="0.000001" name="lng" placeholder="e.g. 78.0081" required />
+              </label>
+            </div>
+            <label>
+              Photo / Video (optional)
+              <input type="file" name="media" accept="image/*,video/*" />
+            </label>
+            <button type="submit" class="btn primary full-width">Submit Incident</button>
+          </form>
+          <p class="note">This is a prototype UI – backend integration can forward this to authorities in real-time.</p>
+        </div>
+
+        <div class="card sos-card">
+          <h3>Emergency SOS</h3>
+          <p>If you are in immediate danger, press the SOS button. Your location and details will be sent with highest priority.</p>
+          <button id="sos-button" class="btn sos-btn">SEND SOS</button>
+          <div id="sos-status" class="sos-status"></div>
+
+          <h3 class="mt-lg">Nearest Shelters</h3>
+          <ul class="shelter-list" id="shelter-list">
+            <li>
+              <strong>Community Hall – Sector 5</strong>
+              <span>1.2 km · 80/120 capacity</span>
+            </li>
+            <li>
+              <strong>Govt School – Main Road</strong>
+              <span>2.0 km · 50/200 capacity</span>
+            </li>
+            <li>
+              <strong>Temple Basement Shelter</strong>
+              <span>2.5 km · 30/60 capacity</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- VOLUNTEER PORTAL -->
+    <section id="volunteer" class="section role-section alt-bg">
+      <div class="section-header">
+        <h2>Volunteer Dashboard</h2>
+        <p>View assigned tasks, update status, and coordinate with citizens.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card form-card">
+          <h3>Volunteer Profile</h3>
+          <form id="volunteer-form">
+            <label>
+              Name
+              <input type="text" name="name" placeholder="Volunteer Name" required />
+            </label>
+            <label>
+              Area / Locality
+              <input type="text" name="area" placeholder="e.g. Ashok Nagar, Ward 12" required />
+            </label>
+            <label>
+              Skills
+              <select name="skills" multiple size="4">
+                <option>First Aid</option>
+                <option>Search & Rescue</option>
+                <option>Logistics & Distribution</option>
+                <option>Communication & Helpdesk</option>
+              </select>
+            </label>
+            <button type="submit" class="btn secondary full-width">Save Profile</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3>Assigned Tasks</h3>
+          <div id="task-list" class="task-list">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUTHORITY DASHBOARD -->
+    <section id="authority" class="section role-section">
+      <div class="section-header">
+        <h2>Authority / Disaster Management Dashboard</h2>
+        <p>Monitor live incidents, assign volunteers, and view heatmaps.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Live Incident Map (Prototype)</h3>
+          <div class="map-placeholder">
+            <div class="map-legend">
+              <span class="dot dot-red"></span> SOS
+              <span class="dot dot-orange"></span> Active Incident
+              <span class="dot dot-green"></span> Resolved
+            </div>
+            <div id="map-info">
+              Map placeholder – integrate Mapbox / OpenStreetMap here in future.
+            </div>
+          </div>
+          <p class="note">Heatmap and layers can show hazard zones, shelters, and live incident clusters.</p>
+        </div>
+
+        <div class="card">
+          <h3>Incidents Queue</h3>
+          <div id="incident-queue" class="incident-list">
+            <!-- JS fills sample incidents -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECOVERY -->
+    <section id="recovery" class="section role-section alt-bg">
+      <div class="section-header">
+        <h2>Recovery & Rehabilitation</h2>
+        <p>Damage assessment, compensation workflows, and relief tracking.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card form-card">
+          <h3>Damage Assessment Form</h3>
+          <form id="damage-form">
+            <label>
+              Affected Asset
+              <select name="asset" required>
+                <option value="">Select</option>
+                <option>Home</option>
+                <option>Business</option>
+                <option>Agriculture / Livestock</option>
+              </select>
+            </label>
+            <label>
+              Severity
+              <select name="severity" required>
+                <option>Partial</option>
+                <option>Major</option>
+                <option>Total</option>
+              </select>
+            </label>
+            <label>
+              Estimated Loss (₹)
+              <input type="number" name="loss" min="0" placeholder="e.g. 150000" required />
+            </label>
+            <label>
+              Description
+              <textarea name="desc" rows="3" placeholder="Describe the damage" required></textarea>
+            </label>
+            <label>
+              Supporting Documents (optional)
+              <input type="file" name="docs" multiple />
+            </label>
+            <button type="submit" class="btn primary full-width">Submit Damage Report</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3>My Recovery Cases</h3>
+          <div id="case-list" class="case-list">
+            <!-- JS will add dummy cases -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE / ABOUT -->
+    <section id="about" class="section">
+      <h2>Technical Architecture (Frontend View)</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Frontend Responsibilities</h3>
+          <ul>
+            <li>Role-based views: Citizens, Volunteers, Authorities, NGOs</li>
+            <li>Forms for incidents, SOS, tasks, damage reports</li>
+            <li>Responsive layouts for mobile and desktop</li>
+            <li>Placeholder hooks for real-time WebSocket data</li>
+            <li>Map container ready for Mapbox / OSM integration</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Backend Integration Points (Future)</h3>
+          <ul>
+            <li><code>/api/incidents</code> – create + list incidents</li>
+            <li><code>/api/tasks</code> – volunteer task assignments</li>
+            <li><code>/api/sos</code> – high-priority alerts</li>
+            <li><code>/api/damage-reports</code> – recovery workflows</li>
+            <li>WebSocket channels for live updates</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Community Disaster Response Network · Hackathon Prototype Frontend</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDRN Login</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+        <div class="login-box">
+
+            <h2>CDRN Login</h2>
+
+            <div class="error-message" id="errorMsg">Please fill all fields correctly.</div>
+
+            <form id="loginForm">
+
+                <label>Select Role</label>
+                <select id="role">
+                    <option value="citizen">Citizen</option>
+                    <option value="volunteer">Volunteer</option>
+                    <option value="authority">Authority</option>
+                    <option value="ngo">NGO</option>
+                </select>
+
+                <label>Email</label>
+                <input type="text" id="email" placeholder="Enter email">
+
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter password">
+
+                <button type="button" class="login-btn" onclick="loginUser()">Login</button>
+
+                <p class="links">
+                    <a href="#">Create Account</a>
+                </p>
+
+            </form>
+
+        </div>
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>
