@@ -1,8 +1,5 @@
 const HazardZone = require('../models/HazardZone');
 
-/**
- * Create new hazard zone
- */
 exports.createHazardZone = async (req, res) => {
   try {
     const { name, type, coordinates, riskLevel, population, safetyMeasures, description } = req.body;
@@ -38,9 +35,6 @@ exports.createHazardZone = async (req, res) => {
   }
 };
 
-/**
- * Get all hazard zones with filters
- */
 exports.getAllHazardZones = async (req, res) => {
   try {
     const { type, riskLevel } = req.query;
@@ -66,9 +60,6 @@ exports.getAllHazardZones = async (req, res) => {
   }
 };
 
-/**
- * Get single hazard zone by ID
- */
 exports.getHazardZoneById = async (req, res) => {
   try {
     const hazardZone = await HazardZone.findById(req.params.id);
@@ -91,9 +82,6 @@ exports.getHazardZoneById = async (req, res) => {
   }
 };
 
-/**
- * Update hazard zone
- */
 exports.updateHazardZone = async (req, res) => {
   try {
     const hazardZone = await HazardZone.findByIdAndUpdate(
@@ -121,9 +109,6 @@ exports.updateHazardZone = async (req, res) => {
   }
 };
 
-/**
- * Delete hazard zone
- */
 exports.deleteHazardZone = async (req, res) => {
   try {
     const hazardZone = await HazardZone.findByIdAndDelete(req.params.id);
