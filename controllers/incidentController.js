@@ -1,13 +1,9 @@
 const Incident = require('../models/Incident');
 
-/**
- * Create new incident report
- */
 exports.createIncident = async (req, res) => {
   try {
     const { type, description, location, severity, reportedBy, isSOS } = req.body;
 
-    // Validation
     if (!type || !description || !location || !reportedBy) {
       return res.status(400).json({ message: 'Please provide all required fields' });
     }
@@ -22,8 +18,7 @@ exports.createIncident = async (req, res) => {
     });
 
     await incident.save();
-    
-    // Populate reporter details
+
     await incident.populate('reportedBy', 'name phone email');
 
     res.status(201).json({
@@ -41,9 +36,6 @@ exports.createIncident = async (req, res) => {
   }
 };
 
-/**
- * Get all incidents with filters
- */
 exports.getAllIncidents = async (req, res) => {
   try {
     const { status, severity, type, isSOS } = req.query;
@@ -74,9 +66,6 @@ exports.getAllIncidents = async (req, res) => {
   }
 };
 
-/**
- * Get single incident by ID
- */
 exports.getIncidentById = async (req, res) => {
   try {
     const incident = await Incident.findById(req.params.id)
@@ -101,9 +90,6 @@ exports.getIncidentById = async (req, res) => {
   }
 };
 
-/**
- * Assign incident to volunteer
- */
 exports.assignIncident = async (req, res) => {
   try {
     const { volunteerId } = req.body;
@@ -143,9 +129,6 @@ exports.assignIncident = async (req, res) => {
   }
 };
 
-/**
- * Update incident status
- */
 exports.updateStatus = async (req, res) => {
   try {
     const { status } = req.body;
@@ -186,9 +169,6 @@ exports.updateStatus = async (req, res) => {
   }
 };
 
-/**
- * Delete incident
- */
 exports.deleteIncident = async (req, res) => {
   try {
     const incident = await Incident.findByIdAndDelete(req.params.id);
@@ -211,9 +191,6 @@ exports.deleteIncident = async (req, res) => {
   }
 };
 
-/**
- * Get incident statistics
- */
 exports.getIncidentStats = async (req, res) => {
   try {
     const stats = await Incident.aggregate([
