@@ -1,17 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
-/**
- * Create logs directory if it doesn't exist
- */
+
 const logsDir = path.join(__dirname, '../logs');
 if (!fs.existsSync(logsDir)) {
   fs.mkdirSync(logsDir);
 }
 
-/**
- * Log requests to file
- */
+
 exports.requestLogger = (req, res, next) => {
   const logData = {
     timestamp: new Date().toISOString(),
@@ -22,7 +18,7 @@ exports.requestLogger = (req, res, next) => {
     body: req.body
   };
 
-  // Don't log sensitive data
+  
   if (logData.body && logData.body.password) {
     logData.body.password = '[HIDDEN]';
   }
@@ -33,9 +29,7 @@ exports.requestLogger = (req, res, next) => {
   next();
 };
 
-/**
- * Console logger for development
- */
+
 exports.consoleLogger = (req, res, next) => {
   const timestamp = new Date().toISOString();
   const method = req.method;
@@ -47,9 +41,7 @@ exports.consoleLogger = (req, res, next) => {
   next();
 };
 
-/**
- * Error logger
- */
+
 exports.errorLogger = (err, req, res, next) => {
   const errorData = {
     timestamp: new Date().toISOString(),
