@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Incident = require('../models/Incident');
 
-// Report new incident
 router.post('/', async (req, res) => {
     try {
         const { type, description, location, severity, reportedBy, isSOS } = req.body;
@@ -28,7 +27,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Get all incidents
 router.get('/', async (req, res) => {
     try {
         const { status, severity, type } = req.query;
@@ -66,7 +64,6 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// Assign incident to volunteer
 router.put('/:id/assign', async (req, res) => {
     try {
         const { volunteerId } = req.body;
@@ -90,7 +87,6 @@ router.put('/:id/assign', async (req, res) => {
     }
 });
 
-// Update incident status
 router.put('/:id/status', async (req, res) => {
     try {
         const { status } = req.body;
@@ -110,7 +106,6 @@ router.put('/:id/status', async (req, res) => {
     }
 });
 
-// Delete incident
 router.delete('/:id', async (req, res) => {
     try {
         await Incident.findByIdAndDelete(req.params.id);
