@@ -1,8 +1,6 @@
 const DamageReport = require('../models/DamageReport');
 
-/**
- * Submit new damage report
- */
+
 exports.createDamageReport = async (req, res) => {
   try {
     const { reportedBy, damageType, estimatedLoss, description, location, documents, photos } = req.body;
@@ -39,9 +37,7 @@ exports.createDamageReport = async (req, res) => {
   }
 };
 
-/**
- * Get all damage reports with filters
- */
+
 exports.getAllDamageReports = async (req, res) => {
   try {
     const { status, damageType } = req.query;
@@ -70,9 +66,7 @@ exports.getAllDamageReports = async (req, res) => {
   }
 };
 
-/**
- * Get single damage report by ID
- */
+
 exports.getDamageReportById = async (req, res) => {
   try {
     const damageReport = await DamageReport.findById(req.params.id)
@@ -97,9 +91,7 @@ exports.getDamageReportById = async (req, res) => {
   }
 };
 
-/**
- * Update damage report status
- */
+
 exports.updateDamageReportStatus = async (req, res) => {
   try {
     const { status, verifiedBy, compensationAmount } = req.body;
@@ -143,9 +135,7 @@ exports.updateDamageReportStatus = async (req, res) => {
   }
 };
 
-/**
- * Get damage report statistics
- */
+
 exports.getDamageReportStats = async (req, res) => {
   try {
     const stats = await DamageReport.aggregate([
