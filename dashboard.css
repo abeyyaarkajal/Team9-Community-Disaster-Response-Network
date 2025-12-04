@@ -60,3 +60,66 @@ h1 {
   margin-top: 8px;
   color: var(--primary);
 }
+/* ALERTS */
+.section-title {
+  margin-top: 30px;
+}
+
+.alert-box {
+  margin-top: 12px;
+}
+
+.alert-item {
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  border-left: 6px solid;
+}
+
+.alert-item.warning {
+  background: #fff7d1;
+  border-color: #e4c430;
+}
+
+.alert-item.info {
+  background: #d9eaff;
+  border-color: #1e74ff;
+}
+
+.alert-item.critical {
+  background: #ffe3e3;
+  border-color: #d9534f;
+}
+
+/* BUTTONS */
+.action-buttons {
+  margin-top: 25px;
+  display: flex;
+  gap: 15px;
+}
+
+.btn-primary {
+  padding: 10px 16px;
+  background: var(--primary);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.btn-sos {
+  padding: 10px 16px;
+  background: var(--danger);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.btn-sos:hover {
+  filter: brightness(0.9);
+}
+
