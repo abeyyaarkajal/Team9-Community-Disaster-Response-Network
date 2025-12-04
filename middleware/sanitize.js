@@ -2,9 +2,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const helmet = require('helmet');
 
-/**
- * Sanitize data to prevent NoSQL injection
- */
+
 exports.sanitizeData = mongoSanitize({
   replaceWith: '_',
   onSanitize: ({ req, key }) => {
@@ -12,14 +10,10 @@ exports.sanitizeData = mongoSanitize({
   },
 });
 
-/**
- * Prevent XSS attacks
- */
+
 exports.preventXSS = xss();
 
-/**
- * Set security headers
- */
+
 exports.setSecurityHeaders = helmet({
   contentSecurityPolicy: {
     directives: {
@@ -29,9 +23,7 @@ exports.setSecurityHeaders = helmet({
   },
 });
 
-/**
- * Custom sanitizer for user input
- */
+
 exports.sanitizeInput = (req, res, next) => {
   // Remove any HTML tags from string fields
   const sanitizeString = (str) => {
