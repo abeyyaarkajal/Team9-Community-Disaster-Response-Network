@@ -24,3 +24,39 @@
   border-radius: 6px;
   cursor: pointer;
 }
+/* DASHBOARD MAIN */
+.dashboard-container {
+  padding: 20px 40px;
+}
+
+h1 {
+  margin-bottom: 5px;
+}
+
+.muted {
+  color: #6c7a87;
+}
+
+/* CARDS */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 25px;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.card-number {
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 8px;
+  color: var(--primary);
+}
